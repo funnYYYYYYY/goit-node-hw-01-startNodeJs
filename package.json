@@ -1,0 +1,29 @@
+{
+  "name": "goit-node-hw-01-startnodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index",
+    "dev": "nodemon index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/funnYYYYYYY/goit-node-hw-01-startNodeJs.git"
+  },
+  "keywords": [],
+  "author": "https://github.com/funnYYYYYYY/goit-js-hw-08",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/funnYYYYYYY/goit-node-hw-01-startNodeJs/issues"
+  },
+  "homepage": "https://github.com/funnYYYYYYY/goit-node-hw-01-startNodeJs#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "dependencies": {
+    "nanoid": "^4.0.1",
+    "yargs": "^17.6.2"
+  }
+}
