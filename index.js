@@ -1,8 +1,19 @@
 const fs = require("fs/promises");
 const contactsOperation = require("./contacts");
-const { nanoid } = require("nanoid");
+const { v4 } = require("uuid");
 
-// const argv = require("yargs").argv;
+const { Command } = require("commander");
+const program = new Command();
+program
+  .option("-a, --action <type>", "contact action")
+  .option("-i, --id <type>", "contact id")
+  .option("-n, --name <type>", "contact name")
+  .option("-e, --email <type>", "contact email")
+  .option("-p, --phone <type>", "contact phone");
+
+program.parse(process.argv);
+
+const argv = program.opts();
 
 const invokeAction = async ({ action, id, name, email, phone }) => {
   switch (action) {
@@ -20,30 +31,17 @@ const invokeAction = async ({ action, id, name, email, phone }) => {
       break;
 
     case "add":
-      const newContact = contactsOperation.addContact({
-        id,
-        name,
-        phone,
-        email,
-      });
-      console.table(object);
+      const newContact = await contactsOperation.addContact(name, email, phone);
+      console.log(newContact);
       break;
 
-    // case "remove":
-    //   // ... id
-    //   break;
+    case "remove":
+      const removeContact = await contactsOperation.removeContact(id);
+      console.log(removeContact);
+      break;
 
     default:
       console.warn("\x1B[31m Unknown action type!");
   }
 };
-invokeAction({ action: "list" });
-invokeAction({ action: "get", id: "11" });
-invokeAction({
-  action: "add",
-  phone: "555-555-555",
-  name: "Chipolino",
-  email: "chipolina@mail.com",
-  id: nanoid(),
-});
-// invokeAction(argv);
+invokeAction(argv);
